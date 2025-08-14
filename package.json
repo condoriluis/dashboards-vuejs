@@ -1,0 +1,36 @@
+{
+  "name": "vuexy-dashboard",
+  "version": "1.0.0",
+  "description": "Dashboard interactivo con Vue.js, Vuexy, Vuetify, Chart.js, ApexCharts",
+  "main": "src/main.js",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@mdi/font": "^7.4.47",
+    "@vueuse/core": "^10.9.0",
+    "axios": "^1.6.0",
+    "chart.js": "^4.4.0",
+    "vue": "^3.4.0",
+    "vue-chartjs": "^5.3.1",
+    "vue-router": "^4.3.0",
+    "vuetify": "^3.6.0",
+    "vuex": "^4.1.0",
+    "vuexy": "^1.0.0"
+  },
+  "devDependencies": {
+    "@vue/cli-service": "^5.0.0"
+  },
+  "keywords": [
+    "vue",
+    "dashboard",
+    "vuetify",
+    "vuexy",
+    "apexcharts",
+    "chartjs"
+  ],
+  "author": "",
+  "license": "MIT"
+}
