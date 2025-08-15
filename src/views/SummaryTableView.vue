@@ -12,10 +12,18 @@
     </v-col>
   </v-row>
   <div class="pa-0">
-    <h2 class="mb-4">Tabla de Comentarios</h2>
-
     
-    <!-- Tabla de datos -->
+    <v-sheet
+      class="pa-0 mb-5 text-center"
+      color="light"
+      rounded
+      elevation="2"
+    >
+      <h2 class="chart-title">
+        <span class="highlight">Tabla de datos</span>
+      </h2>
+    </v-sheet>
+    
     <div>
       <v-select
         :items="apiOptions.map(opt => opt.label)"
@@ -144,3 +152,15 @@ async function fetchAllCounts() {
 
 onMounted(fetchAllCounts);
 </script>
+
+<style scoped>
+.chart-title {
+  font-weight: bold;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  color: white;
+}
+.chart-title .highlight {
+  color: #0951a3;
+}
+</style>

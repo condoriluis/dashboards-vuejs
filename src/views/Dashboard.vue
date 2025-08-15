@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-container">
-    <HeaderBar :view="currentView" @changeView="currentView = $event" />
+    <HeaderBar :view="currentView" :countdown="countdown" @changeView="handleChangeView" />
     <v-alert
       type="info"
       variant="outlined"
@@ -14,13 +14,12 @@
         <div>
           <span class="font-weight-bold">Actualización automática de datos en tiempo real:</span>
           &nbsp;Todos los gráficos y widgets de este dashboard se actualizan automáticamente cada <b>10 segundos</b> para simular la recepción de datos en vivo desde una API.
-          <br />
-          <span class="ms-2">Siguiente actualización en: <b class="text-primary">{{ countdown }}</b> segundos</span>
         </div>
       </div>
     </v-alert>
-    <v-container fluid class="py-8">
+    <v-container fluid class="py-2">
       <ChartsView v-if="currentView === 'charts'" />
+      <ApexChartsView v-if="currentView === 'apexcharts'" />
       <SummaryTableView v-if="currentView === 'summaryTable'" />
     </v-container>
   </div>
@@ -30,6 +29,7 @@
 import HeaderBar from '../components/HeaderBar.vue';
 import ChartsView from './ChartsView.vue';
 import SummaryTableView from './SummaryTableView.vue';
+import ApexChartsView from './ApexChartsView.vue';
 import { ref, onMounted, onUnmounted } from 'vue';
 
 const currentView = ref('charts');
@@ -39,12 +39,19 @@ const countdown = ref(INTERVAL_SECONDS);
 let timer = null;
 
 function startCountdown() {
+  if (timer) clearInterval(timer);
+  countdown.value = INTERVAL_SECONDS;
   timer = setInterval(() => {
     countdown.value--;
     if (countdown.value <= 0) {
       countdown.value = INTERVAL_SECONDS;
     }
   }, 1000);
+}
+
+function handleChangeView(newView) {
+  currentView.value = newView;
+  countdown.value = INTERVAL_SECONDS;
 }
 
 onMounted(() => {
